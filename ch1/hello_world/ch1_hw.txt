@@ -1,0 +1,115 @@
+// Error 1 
+hello_world.cpp: In function ‘int main()’:
+hello_world.cpp:3:8: error: ‘cout’ is not a member of ‘std’
+    3 |   std::cout << "Hello, World!\n";
+      |        ^~~~
+hello_world.cpp:1:1: note: ‘std::cout’ is defined in header ‘<iostream>’; did you forget to ‘#include <ios
+tream>’?
+  +++ |+#include <iostream>
+    1 | 
+
+// Error 2
+hello_world.cpp: In function ‘int main()’:
+hello_world.cpp:4:3: error: ‘cout’ was not declared in this scope; did you mean ‘std::cout’?
+    4 |   cout << "Hello, World!\n";
+      |   ^~~~
+      |   std::cout
+In file included from hello_world.cpp:1:
+/usr/include/c++/13/iostream:63:18: note: ‘std::cout’ declared here
+   63 |   extern ostream cout;          ///< Linked to standard output
+      |                  ^~~~
+
+// Error 3
+hello_world.cpp:4:16: warning: missing terminating " character
+    4 |   std::cout << "Hello, World!\n;
+      |                ^
+hello_world.cpp:4:16: error: missing terminating " character
+    4 |   std::cout << "Hello, World!\n;
+      |                ^~~~~~~~~~~~~~~~~
+hello_world.cpp: In function ‘int main()’:
+hello_world.cpp:5:7: error: expected primary-expression before ‘return’
+    5 |       return 0;
+      |       ^~~~~~
+
+// Error 4
+hello_world.cpp:3:1: error: ‘integer’ does not name a type
+    3 | integer main() {
+      | ^~~~~~~
+
+// Error 5
+hello_world.cpp:4:16: warning: character constant too long for its type
+    4 |   std::cout << 'Hello, World!\n';
+      |                ^~~~~~~~~~~~~~~~~
+
+// Error 6
+hello_world.cpp: In function ‘int main()’:
+hello_world.cpp:3:44: error: expected ‘;’ before ‘return’
+    3 | int main() { std::cout << "Hello, World!\n" return 0; }
+      |                                            ^~~~~~~
+      |                                            ;
+
+// Error 7
+hello_world.cpp: In function ‘int main()’:
+hello_world.cpp:4:13: error: no match for ‘operator<’ (operand types are ‘std::ostream’ {aka ‘std::basic_o
+stream<char>’} and ‘const char [15]’)
+    4 |   std::cout < "Hello, World!\n";
+      |   ~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~
+      |        |      |
+      |        |      const char [15]
+      |        std::ostream {aka std::basic_ostream<char>}
+In file included from /usr/include/c++/13/string:48,
+                 from /usr/include/c++/13/bits/locale_classes.h:40,
+                 from /usr/include/c++/13/bits/ios_base.h:41,
+                 from /usr/include/c++/13/ios:44,
+                 from /usr/include/c++/13/ostream:40,
+                 from /usr/include/c++/13/iostream:41,
+                 from hello_world.cpp:1:
+/usr/include/c++/13/bits/stl_iterator.h:583:5: note: candidate: ‘template<class _IteratorL, class _Iterato
+rR>  requires  three_way_comparable_with<_IteratorR, _IteratorL, std::partial_ordering> constexpr std::com
+pare_three_way_result_t<_IteratorL, _IteratorR> std::operator<=>(const reverse_iterator<_IteratorL>&, cons
+t reverse_iterator<_IteratorR>&)’ (reversed)
+  583 |     operator<=>(const reverse_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+
+// Error 8 (not including return 0;
+Hello, World!
+
+// Error 9 (write MAIN())
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+
+// Error 10
+hello_world.cpp: In function ‘int main()’:
+hello_world.cpp:4:8: error: ‘cour’ is not a member of ‘std’; did you mean ‘cout’?
+    4 |   std::cour << "Hello, World!\n";
+      |        ^~~~
+      |        cout
+
+// Error 11
+hello_world.cpp: In function ‘int main()’:
+hello_world.cpp:5:3: error: ‘cout’ was not declared in this scope; did you mean ‘std::cout’?
+    5 |   cout << "Hello, World!\n";
+      |   ^~~~
+      |   std::cout
+In file included from hello_world.cpp:1:
+/usr/include/c++/13/iostream:63:18: note: ‘std::cout’ declared here
+   63 |   extern ostream cout;          ///< Linked to standard output
+      |                  ^~~~
+
+// Error 12 
+hello_world.cpp: In function ‘int main()’:
+hello_world.cpp:6:3: error: expected primary-expression before ‘.’ token
+    6 |   .
+      |   ^
+hello_world.cpp:7:1: error: expected unqualified-id before ‘}’ token
+    7 | }
+      | ^
+
+// Error 13
+hello_world.cpp:3:5: error: cannot declare ‘::main’ to be a global variable
+    3 | int main(asd) {
+      |     ^~~~
+hello_world.cpp:3:10: error: ‘asd’ was not declared in this scope
+    3 | int main(asd) {
+      |          ^~~
