@@ -4,10 +4,12 @@
 
 class Truck {
 public:
+  enum Color { BLACK, WHITE, RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET };
+
   string make;
   string model;
   int year;
-  string color;
+  Color truckColor; // changed from string to color enum
   int numberOfSeats;
   int wheelSize;
   string transmissionType;
@@ -22,6 +24,56 @@ public:
 
   Engine engine;
 
+  string colorToString(Color c) {
+    switch (c) {
+    case BLACK:
+      return "Black";
+    case WHITE:
+      return "White";
+    case RED:
+      return "Red";
+    case ORANGE:
+      return "Orange";
+    case YELLOW:
+      return "Yellow";
+    case GREEN:
+      return "Green";
+    case BLUE:
+      return "Blue";
+    case INDIGO:
+      return "Indigo";
+    case VIOLET:
+      return "Violet";
+    default:
+      return "Unknown";
+    }
+  }
+
+  // function to set color by string
+  void setColorByString(const string &colorStr) {
+    if (colorStr == "Black")
+      truckColor = BLACK;
+    else if (colorStr == "White")
+      truckColor = WHITE;
+    else if (colorStr == "Red")
+      truckColor = RED;
+    else if (colorStr == "Orange")
+      truckColor = ORANGE;
+    else if (colorStr == "Yellow")
+      truckColor = YELLOW;
+    else if (colorStr == "Green")
+      truckColor = GREEN;
+    else if (colorStr == "Blue")
+      truckColor = BLUE;
+    else if (colorStr == "Indigo")
+      truckColor = INDIGO;
+    else if (colorStr == "Violet")
+      truckColor = VIOLET;
+    else {
+      cout << "Invalid color, setting to Black\n";
+      truckColor = BLACK;
+    }
+  }
   void init_engine(Engine &ee, int cylinders, string camshaft,
                    string fuelDelivery, int miles) {
     // check for valid engine, if valid, initialize
@@ -81,7 +133,7 @@ int main() {
   truckObj1.make = "Chevy";
   truckObj1.model = "C20";
   truckObj1.year = 1982;
-  truckObj1.color = "Black";
+  truckObj1.truckColor = Truck::BLACK;
   truckObj1.numberOfSeats = 2;
   truckObj1.wheelSize = 16;
   truckObj1.transmissionType = "Automatic";
@@ -93,7 +145,7 @@ int main() {
   truckObj2.make = "Chevy";
   truckObj2.model = "K3500";
   truckObj2.year = 1992;
-  truckObj2.color = "Red";
+  truckObj2.setColorByString("Red");
   truckObj2.numberOfSeats = 4;
   truckObj2.wheelSize = 16;
   truckObj2.transmissionType = "Manual";
@@ -102,12 +154,14 @@ int main() {
   truckObj2.init_engine(truckObj2.engine, 8, "Aggressive", "Fuel Injection",
                         12403);
 
-  cout << truckObj1.make << truckObj1.model << truckObj1.year << truckObj1.color
+  cout << truckObj1.make << truckObj1.model << truckObj1.year
+       << truckObj1.colorToString(truckObj1.truckColor)
        << truckObj1.numberOfSeats << truckObj1.wheelSize
        << truckObj1.transmissionType << truckObj1.engine.miles << "\n";
   truckObj1.display_engine(truckObj1.engine);
 
-  cout << truckObj2.make << truckObj2.model << truckObj2.year << truckObj2.color
+  cout << truckObj2.make << truckObj2.model << truckObj2.year
+       << truckObj2.colorToString(truckObj2.truckColor)
        << truckObj2.numberOfSeats << truckObj2.wheelSize
        << truckObj2.transmissionType << truckObj2.engine.miles << "\n";
   truckObj2.display_engine(truckObj2.engine);
